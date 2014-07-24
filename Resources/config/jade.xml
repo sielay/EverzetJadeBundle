@@ -3,8 +3,8 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.symfony-project.org/schema/dic/services http://www.symfony-project.org/schema/dic/services/services-1.0.xsd">
     <parameters>
-        <parameter key="jade.class">sielay\Bundle\Everzet\JadeBundle\Jade</parameter>
-        <parameter key="jade.renderer.class">sielay\Bundle\Everzet\JadeBundle\Renderer\Renderer</parameter>
+        <parameter key="jade.class">Bundle\Everzet\JadeBundle\Jade</parameter>
+        <parameter key="jade.renderer.class">Bundle\Everzet\JadeBundle\Renderer\Renderer</parameter>
 
         <parameter key="jade.parser.class">Everzet\Jade\Parser</parameter>
         <parameter key="jade.lexer.class">Everzet\Jade\Lexer\Lexer</parameter>

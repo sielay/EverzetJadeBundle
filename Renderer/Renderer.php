@@ -1,6 +1,6 @@
 <?php
 
-namespace sielay\Bundle\Everzet\JadeBundle\Renderer;
+namespace Bundle\Everzet\JadeBundle\Renderer;
 
 use Symfony\Component\Templating\Renderer\PhpRenderer;
 use Symfony\Component\Templating\Storage\Storage;

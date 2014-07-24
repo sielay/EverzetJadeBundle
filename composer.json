@@ -16,7 +16,7 @@
     "minimum-stability": "dev",
     "autoload": {
 	    "psr-0": {
-	        "sielay\\Bundle\\Everzet\\JadeBundle": "/"
+	        "Bundle\\Everzet\\JadeBundle": "/"
 	    }
 	}
 }
