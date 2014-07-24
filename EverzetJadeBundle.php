@@ -1,6 +1,6 @@
 <?php
 
-namespace Bundle\Everzet\JadeBundle;
+namespace sielay\Bundle\Everzet\JadeBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

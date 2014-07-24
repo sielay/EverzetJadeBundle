@@ -1,6 +1,6 @@
 <?php
 
-namespace Bundle\Everzet\JadeBundle;
+namespace sielay\Bundle\Everzet\JadeBundle;
 
 use Symfony\Component\Templating\Storage\Storage;
 use Symfony\Component\Templating\Storage\FileStorage;
