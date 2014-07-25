@@ -2,6 +2,7 @@
 
 namespace Bundle\Everzet\JadeBundle\DependencyInjection;
 
+use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -19,7 +20,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
  *
  * @author      Konstantin Kudryashov <ever.zet@gmail.com>
  */
-class JadeExtension extends Extension
+class EverzetJadeExtension extends Extension
 {
     /**
      * Load jade configuration. 
@@ -55,7 +56,7 @@ class JadeExtension extends Extension
      */
     public function getAlias()
     {
-        return 'jade';
+        return 'everzet_jade';
     }
 
     /**
@@ -63,7 +64,12 @@ class JadeExtension extends Extension
      */
     protected function loadDefaults($container)
     {
-        $loader = new XmlFileLoader($container, __DIR__ . '/../Resources/config/');
+        $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('jade.xml');
+    }
+    
+    public function load(array $configs, ContainerBuilder $container)
+    {
+        $this->loadDefaults($container);
     }
 }
