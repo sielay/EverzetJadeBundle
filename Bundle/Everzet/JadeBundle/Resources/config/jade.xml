@@ -11,6 +11,7 @@
         <parameter key="jade.lexer.class">Everzet\Jade\Lexer\Lexer</parameter>
         <parameter key="jade.dumper.class">Everzet\Jade\Dumper\PHPDumper</parameter>
         <parameter key="jade.cache">%kernel.cache_dir%/jade</parameter>
+        <parameter key="assetic.jade_formula_loader.class">Bundle\Everzet\JadeBundle\Assetic\FakeFormulaLoader</parameter>
     </parameters>
     <services>
         <service id="jade.renderer" class="%jade.renderer.class%">
@@ -36,6 +37,12 @@
             <argument type="service" id="jade.dumper" />
             <argument>%jade.cache%</argument>
     </service>
+    
+        <service id="assetic.jade_formula_loader" class="%assetic.jade_formula_loader.class%" public="false">
+            <tag name="assetic.formula_loader" alias="jade" />
+            <tag name="assetic.templating.jade" />
+        </service>
+
 
         <service id="jade.dumper" class="%jade.dumper.class%">
             <call method="registerVisitor">
