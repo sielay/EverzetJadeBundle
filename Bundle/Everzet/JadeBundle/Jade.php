@@ -27,8 +27,16 @@ class Jade extends BaseJade
      * 
      * @param   LexerInterface  $lexer  jade lexer
      */
-    public function __construct(Parser $parser, DumperInterface $dumper, $cache = null)
+    public function __construct($parser, $dumper, $cache = null)
     {
+        //var_dump(debug_backtrace());    
+        var_dump('INIT');
+        var_dump(get_class($parser));
+        var_dump(get_class($dumper));
+        var_dump($cache);
+        var_dump('/INIT');
+        
+        
         if (null !== $cache && !is_dir($cache)) {
             mkdir($cache, 0777, true);
         }
@@ -48,7 +56,6 @@ class Jade extends BaseJade
         if ($input instanceof Storage) {
             return $input->getContent();
         }
-
         throw new \InvalidArgumentException(sprintf('The template "%s" does not exist.', $input));
     }
 
@@ -61,6 +68,7 @@ class Jade extends BaseJade
      */
     protected function getInputCacheKey($input)
     {
+            
         if ($input instanceof Storage) {
             return (string) $input;
         }
