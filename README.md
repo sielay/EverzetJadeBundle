@@ -19,22 +19,19 @@ See [Jade.php site](http://everzet.com/jade.php) & [repository](http://github.co
 
 ## Installation
 
-### Add Everzet\JadeBundle to your src/Bundle dir
+## Add bundle to your composer
 
-    git submodule add git://github.com/everzet/EverzetJadeBundle.git src/Bundle/Everzet/JadeBundle
+    // composer.json
+    {
+      ...
+      "sielay/jadebundle" : "dev-master"
+      
+    }
+    
+### Update your composer
 
-### Put Jade.php inside vendors folder
-
-    git submodule add git://github.com/everzet/jade.php src/vendor/jade.php
-
-### Add Jade.php namespace to autoload
-
-    // src/autoload.php
-    $loader->registerNamespaces(array(
-        // ...
-        'Everzet\\Jade' => $vendorDir . '/jade.php/src',
-        // ...
-    ));
+    //
+    composer update
 
 ### Add EverzetJadeBundle to your application kernel
 
@@ -89,4 +86,5 @@ Then you could render them like this:
 List of developers who contributed:
 
 - Konstantin Kudryashov (ever.zet@gmail.com)
+- Lukasz Marek Sielski (lukaszsielski@gmail.com)
 
