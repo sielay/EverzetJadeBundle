@@ -16,6 +16,8 @@ use Symfony\Component\Templating\Storage\FileStorage;
 use Symfony\Component\HttpKernel\Config\FileLocator;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Templating\TemplateReference;
+use Bundle\Everzet\JadeBundle\Renderer\Renderer;
+use Symfony\Component\Templating\PhpEngine;
 
 /**
  * This engine knows how to render Jade templates.
@@ -25,6 +27,7 @@ class Engine implements EngineInterface
     protected $jade;
     protected $parser;
     protected $loader;
+    protected $renderer;
 
     /**
      * Constructor.
@@ -37,6 +40,8 @@ class Engine implements EngineInterface
         $this->jade = $jade;
         $this->parser   = $parser;
         $this->loader = $loader;
+        $this->renderer = new Renderer($jade, $parser, $loader);
+        $this->renderer->setEngine(new PhpEngine($parser, $loader, array()));
     }
 
     /**
@@ -52,16 +57,14 @@ class Engine implements EngineInterface
      */
     public function render($name, array $parameters = array())
     {
-        
-        $rendered = $this->jade->render($this->nameToStorage($name));
-        var_dump($rendered);
-        return $rendered;
+    	$storage = $this->nameToStorage($name);
+        $s = $this->renderer->evaluate($storage, $parameters);
+        return $s;
     }
     
     private function nameToStorage($name)
     {
         $template = $this->parser->parse($name);
-        var_dump($template);
         $loaded = $this->loader->load($template);
         return $loaded;
     }
@@ -78,7 +81,6 @@ class Engine implements EngineInterface
         try {
             $this->nameToStorage($name);
         } catch (\InvalidArgumentException $e) {
-            var_dump($e);
             return false;
         }
 

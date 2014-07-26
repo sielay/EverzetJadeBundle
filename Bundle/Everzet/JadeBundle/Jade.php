@@ -29,14 +29,6 @@ class Jade extends BaseJade
      */
     public function __construct($parser, $dumper, $cache = null)
     {
-        //var_dump(debug_backtrace());    
-        var_dump('INIT');
-        var_dump(get_class($parser));
-        var_dump(get_class($dumper));
-        var_dump($cache);
-        var_dump('/INIT');
-        
-        
         if (null !== $cache && !is_dir($cache)) {
             mkdir($cache, 0777, true);
         }

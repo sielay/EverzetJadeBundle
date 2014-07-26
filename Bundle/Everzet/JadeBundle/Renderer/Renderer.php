@@ -2,7 +2,7 @@
 
 namespace Bundle\Everzet\JadeBundle\Renderer;
 
-use Symfony\Component\Templating\Renderer\PhpRenderer;
+use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\Templating\Storage\Storage;
 use Symfony\Component\Templating\Storage\FileStorage;
 
@@ -19,7 +19,7 @@ use Everzet\Jade\Jade;
 /**
  * Jade Renderer. 
  */
-class Renderer extends PhpRenderer
+class Renderer
 {
     protected $jade;
 
@@ -45,6 +45,30 @@ class Renderer extends PhpRenderer
     {
         $storage = new FileStorage($this->jade->cache($template));
 
-        return parent::evaluate($storage, $parameters);
+        $__template__ = $storage;
+        if ($__template__ instanceof FileStorage) {
+            extract($parameters);
+            $view = $this->engine;
+            ob_start();
+            require $__template__;
+            return ob_get_clean();
+        } elseif ($__template__ instanceof StringStorage) {
+            extract($parameters);
+            $view = $this->engine;
+            ob_start();
+            eval('; ?>'.$__template__.'<?php ;');
+            return ob_get_clean();
+        }
+        return false;
+    }
+
+    /**
+     * Sets the template engine associated with this renderer.
+     *
+     * @param Engine $engine A Engine instance
+     */
+    public function setEngine($engine)
+    {
+    	$this->engine = $engine;
     }
 }
